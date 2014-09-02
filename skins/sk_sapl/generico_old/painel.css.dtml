@@ -1,0 +1,110 @@
+<dtml-in expr="zsql.props_painel_eletronico_obter_zsql()">
+
+.painel {
+    background-color: <dtml-var txt_painel_cor_fundo null=#000000>;
+    color: <dtml-var txt_painel_cor_fonte null=#FFFFFF>;
+    font: <dtml-var txt_fonte null=Arial>;
+    /*font-size: 150%;*/
+}
+
+.coluna1 {
+    float: left;
+    width: 50%;
+}
+
+.coluna2 {
+    float: right;
+    width: 50%;
+}
+
+.aparte-cor {
+    color: <dtml-var txt_apartante_cor null=#FFFFFF>;
+}
+
+.ordem-cor {
+    color: <dtml-var txt_questao_ordem_cor null=#FFFFFF>;
+    /*text-align: right;*/
+}
+
+.orador-cor {
+    color: <dtml-var txt_orador_cor null=#FFFFFF>;
+    /*text-align: right;*/
+}
+
+.parlamentares {
+    color: <dtml-var txt_mesa_cor null=#FFFFFF>;
+    width: 100%;
+    text-transform: uppercase;
+}
+
+.mesa-cor {
+    color: <dtml-var txt_mesa_cor null=#FFFFFF>;
+}
+
+.presenca-cor {
+    color: <dtml-var txt_presenca_cor null=#FFFFFF>;
+}
+
+.presenca-cor-mesa {
+    color: <dtml-var txt_presenca_cor null=#FFFFFF>;
+    text-decoration: underline;
+}
+
+.ausencia-cor {
+    color: <dtml-var txt_ausencia_cor null=#FFFFFF>;
+}
+
+.ausencia-cor-mesa {
+    color: <dtml-var txt_ausencia_cor null=#FFFFFF>;
+    text-decoration: underline;
+}
+
+.presenca-total-cor {
+    color: <dtml-var txt_presenca_total_cor null=#FFFFFF>;
+}
+
+.ausencia-total-cor {
+    color: <dtml-var txt_ausencia_total_cor null=#FFFFFF>;
+}
+
+.total-sim-cor {
+    color: <dtml-var txt_total_sim_cor null=#FFFFFF>;
+}
+
+.total-nao-cor {
+    color: <dtml-var txt_total_nao_cor null=#FFFFFF>;
+}
+
+.total-abstencao-cor {
+    color: <dtml-var txt_total_abstencao_cor null=#FFFFFF>;
+}
+
+.total-nao-votou-cor {
+    color: <dtml-var txt_total_nao_votou_cor null=#FFFFFF>;
+}
+
+.total-votos-cor {
+    color: <dtml-var txt_total_votos_cor null=#FFFFFF>;
+}
+
+.total-presentes-cor {
+    color: <dtml-var txt_total_presentes_cor null=#FFFFFF>;
+}
+
+.total-ausentes-cor {
+    color: <dtml-var txt_total_ausentes_cor null=#FFFFFF>;
+}
+
+.hora {
+    font-size: 150%;
+    text-align: right;
+}
+
+.painel-quadro {
+    margin-top: 20px;
+    text-align: center;
+    line-height: 1.5em;
+    vertical-align: middle;
+}
+
+</dtml-in>

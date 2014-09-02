@@ -1,0 +1,319 @@
+<dtml-var standard_html_header>
+<a id="ajuda" href="&dtml-portal_url;/ajuda/consultas#cons_dadosparl"><span class="glyphicon glyphicon-hand-right"></span> Ajuda</a>
+<h1 class="firstHeading"><dtml-var nom_parlamentar></h1>
+
+<div class="row">
+    <div class="col-md-10">
+        <dtml-in expr="sapl_documentos.parlamentar.fotos.objectValues('Image')">
+            <dtml-if expr=" _.str(cod_parlamentar)+'_'+sapl_documentos.parlamentar.fotos.nom_documento == id() ">
+                <img id="parlamentar" src="<dtml-var absolute_url>">
+            </dtml-if>
+        </dtml-in>
+        <div id="texto-parlamentar">
+            <b>Nome Completo: </b><dtml-var nom_completo><br />
+            <b>Partido: </b><dtml-var sgl_partido missing null=""><br />
+            <b>Data Nascimento: </b><dtml-var dat_nascimento missing null=""><br />
+            <dtml-if expr="ind_ativo == 1">
+                <dtml-if num_tel_parlamentar><b>Telefone: </b><dtml-var num_tel_parlamentar missing><br /></dtml-if>
+                <dtml-if end_email><b>E-mail: </b><a href="mailto:<dtml-var end_email>"><dtml-var end_email missing></a><br /></dtml-if>
+                <dtml-if end_web>
+                    <b>Homepage: </b><a href="<dtml-var end_web>"><dtml-var end_web missing></a><br />
+                </dtml-if>
+            </dtml-if>
+            <dtml-if expr="ind_ativo == 0">
+                <b>Ativo na Casa?</b> Não<br />
+            </dtml-if>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="vereadorPartidoContainer">
+            <dtml-call expr="REQUEST.set('logo_partido', _.str(cod_partido)+'_logo.png')">
+            <img class="partidoLogo" id="partido-logo" src="&dtml-portal_url;/imagens/logo_partido/<dtml-var logo_partido>">
+        </div>
+    </div>
+</div>
+<ul class="nav nav-tabs" role="tablist">
+    <li class="active">
+        <a href="#biografia" role="tab" data-toggle="tab">Biografia</a>
+    </li>
+    <li>
+        <a href="#partidos" role="tab" data-toggle="tab">Partidos</a>
+    </li>
+    <li>
+        <a href="#mandato" role="tab" data-toggle="tab">Mandatos</a></li>
+    <li>
+        <a href="#mesa" role="tab" data-toggle="tab">Mesa Diretora</a></li>
+    <li>
+        <a href="#comissoes" role="tab" data-toggle="tab">Comissões</a></li>
+    <li>
+        <a href="#proposicoes" role="tab" data-toggle="tab">Proposições</a></li>
+    <li>
+        <a href="#relatorias" role="tab" data-toggle="tab">Relatorias</a></li>
+</ul>
+<div class="tab-content parlamentares">
+    <div class="tab-pane fade in active" id="biografia">
+        <dtml-in expr="zsql.parlamentar_obter_zsql(cod_parlamentar=cod_parlamentar)">
+            <dtml-if txt_biografia>
+                <div class="texto"><dtml-var txt_biografia missing null=""></div>
+                <dtml-else>
+                <p class="texto">Texto não disponível</p>
+            </dtml-if>
+        </dtml-in>
+    </div>
+    <div class="tab-pane fade" id="partidos">
+        <dtml-in expr="zsql.parlamentar_obter_zsql(cod_parlamentar=cod_parlamentar)">
+            <dtml-call expr="REQUEST.set('nom_parlamentar', nom_parlamentar)">
+        </dtml-in>
+        <dtml-in expr="zsql.parlamentar_somar_proposicao_zsql(cod_parlamentar=cod_parlamentar)">
+            <dtml-call expr="REQUEST.set('total', total)">
+        </dtml-in>
+        <table class="table">
+            <dtml-in expr="zsql.filiacao_obter_zsql(ind_excluido=0, cod_parlamentar=cod_parlamentar)" size=8 start=query_start orphan=2>
+            <dtml-if sequence-start>
+                <tr>
+                    <th class="form-label">Partido</th>
+                    <th class="form-label">Data Filiação</th>
+                    <th class="form-label">Data Desfiliação</th>
+                </tr>
+
+                <dtml-if previous-sequence>
+                    <tr><td colspan="3" class="form-element">
+                        <a href="<dtml-var URL><dtml-var sequence-query>query_start=<dtml-var previous-sequence-start-number>">
+                            Página Anterior (<dtml-var previous-sequence-size> resultados)</a>
+                    </td></tr>
+                    <tr><td><font size="1">&nbsp;</font></td></tr>
+                </dtml-if previous-sequence>
+            </dtml-if sequence-start>
+            <tr>
+                <td class="texto">
+                    <dtml-in expr="zsql.partido_obter_zsql(ind_excluido=0, cod_partido=cod_partido)">
+                        <dtml-var sgl_partido>
+                    </dtml-in></td>
+                <td class="texto">
+                    <dtml-if dat_filiacao>
+                        &nbsp; <dtml-var dat_filiacao>
+                    </dtml-if></td>
+                <td  class="texto">
+                    <dtml-if dat_desfiliacao>
+                        &nbsp; <dtml-var dat_desfiliacao null="">
+                    </dtml-if></td>
+            </tr>
+            <dtml-if sequence-end>
+                <dtml-if next-sequence>
+                    <tr>
+                        <td colspan="3" class="texto"><a href="<dtml-var URL><dtml-var sequence-query>query_start=<dtml-var next-sequence-start-number>">
+                            Próxima Página (<dtml-var next-sequence-size> resultados)</a></td>
+                    </tr>
+                </dtml-if next-sequence>
+            </dtml-if sequence-end>
+            <dtml-else>
+            <tr><td class="form-text">Nenhuma filiação cadastrada.</td></tr>
+            </dtml-in>
+        </table>
+    </div>
+    <div class="tab-pane fade" id="mandato">
+        <dtml-in expr="zsql.parlamentar_obter_zsql(cod_parlamentar=cod_parlamentar)">
+            <dtml-call expr="REQUEST.set('nom_parlamentar', nom_parlamentar)">
+        </dtml-in>
+        <table class="table">
+            <dtml-in expr="zsql.mandato_obter_zsql(nom_parlamentar=nom_parlamentar, cod_parlamentar=cod_parlamentar, ind_excluido=0)" size=24 start=query_start orphan=2>
+            <dtml-if sequence-start>
+                <tr>
+                    <th>Legislatura</th>
+                    <th>Nº Votos</th>
+                    <th>Titular?</th>
+                    <th>Início Mandato</th>
+                    <th>Fim Mandato</th>
+                </tr>
+                <dtml-if previous-sequence>
+                    <tr><td class="texto">
+                        <a href="<dtml-var URL><dtml-var sequence-query>query_start=<dtml-var previous-sequence-start-number>">
+                            Página Anterior (<dtml-var previous-sequence-size> resultados)</a></td>
+                    </tr>
+                </dtml-if previous-sequence>
+            </dtml-if sequence-start>
+            <tr>
+                <td class="texto">
+                    <dtml-var expr="pysc.periodo_legislatura_format_pysc(num_legislatura, dat_inicio, dat_fim)">
+                </td>
+                <td class="texto"><dtml-var num_votos_recebidos missing null=""></td>
+                <td class="texto"><dtml-if expr="ind_titular==1">Sim<dtml-else>Não</dtml-if></td>
+                <td class="texto"><dtml-var dat_inicio_mandato missing null=""></td>
+                <td class="texto"><dtml-var dat_fim_mandato missing null=""></td>
+            </tr>
+            <dtml-if sequence-end>
+                <dtml-if next-sequence>
+                    <tr>
+                    <td class="texto"><a href="<dtml-var URL><dtml-var sequence-query>query_start=<dtml-var next-sequence-start-number>">
+                        Próxima Página (<dtml-var next-sequence-size> resultados)</a></td>
+                    <tr>
+                </dtml-if next-sequence>
+            </dtml-if sequence-end>
+            <dtml-else>
+            <tr><td class="texto">Não há nenhum mandato cadastrado para esse parlamentar.</td></tr>
+            </dtml-in>
+        </table>
+    </div>
+    <div class="tab-pane fade" id="mesa">
+        <dtml-in expr="zsql.parlamentar_obter_zsql(cod_parlamentar=cod_parlamentar)">
+            <dtml-call expr="REQUEST.set('nom_parlamentar', nom_parlamentar)">
+        </dtml-in>
+        <table class="table">
+            <dtml-in expr="zsql.parlamentar_mesa_obter_zsql(cod_parlamentar=cod_parlamentar,ind_excluido=0)">
+            <dtml-if sequence-start>
+            <tr>
+                <th class="form-label"> Cargo</th>
+                <th class="form-label"> Legislatura</th>
+                <th class="form-label"> Período</th>
+            </tr>
+            </dtml-if sequence-start>
+            <tr>
+                <td class="texto"><dtml-var des_cargo></td>
+                <td class="texto"><dtml-var num_legislatura>&ordf; (<dtml-var leg_dat_inicio> - <dtml-var leg_dat_fim>)</td>
+                <td class="texto"><dtml-var sl_dat_inicio> a <dtml-var sl_dat_fim></td>
+            </tr>
+            <dtml-else>
+            <tr>
+                <td class="texto">Este parlamentar não ocupou cargo na Mesa Diretora</td>
+            </tr>
+            </dtml-in>
+        </table>
+    </div>
+    <div class="tab-pane fade" id="comissoes">
+        <dtml-in expr="zsql.parlamentar_obter_zsql(cod_parlamentar=cod_parlamentar)">
+            <dtml-call expr="REQUEST.set('nom_parlamentar', nom_parlamentar)">
+        </dtml-in>
+        <table class="table">
+            <dtml-in expr="zsql.composicao_comissao_obter_zsql(cod_parlamentar=cod_parlamentar)">
+                <dtml-if sequence-start>
+                    <tr>
+                        <th class="form-label"> Cargo</th>
+                        <th class="form-label"> Comissão</th>
+                        <th class="form-label"> Período </th>
+                    </tr>
+                </dtml-if sequence-start>
+                <tr>
+                    <td class="texto"><dtml-var des_cargo></td>
+                    <td class="texto"><dtml-var nom_comissao></td>
+                    <td class="texto">
+                        <dtml-var dat_designacao> a
+                        <dtml-if expr="dat_desligamento!=None">
+                            <dtml-var dat_desligamento>
+                            <dtml-else>
+                            <dtml-in expr="zsql.periodo_comp_comissao_obter_zsql(cod_periodo_comp=cod_periodo_comp)">
+                                <dtml-var dat_fim_periodo>
+                            </dtml-in>
+                        </dtml-if>
+                    </td>
+                </tr>
+                <dtml-else>
+                <tr><td class="texto">Este parlamentar não faz parte de nenhuma Comissão</td></tr>
+            </dtml-in>
+        </table>
+    </div>
+    <div class="tab-pane fade" id="proposicoes">
+        <dtml-in expr="zsql.parlamentar_obter_zsql(cod_parlamentar=cod_parlamentar)">
+            <dtml-call expr="REQUEST.set('nom_parlamentar', nom_parlamentar)">
+        </dtml-in>
+
+        <dtml-in expr="zsql.parlamentar_somar_proposicao_zsql(cod_parlamentar=cod_parlamentar)">
+            <dtml-call expr="REQUEST.set('total', total)">
+        </dtml-in>
+
+        <dtml-in expr="zsql.parlamentar_somar_coautoria_zsql(cod_parlamentar=cod_parlamentar)">
+            <dtml-call expr="REQUEST.set('total_coautoria', total)">
+        </dtml-in>
+
+        <table class="table">
+            <dtml-in expr="zsql.parlamentar_obter_proposicao_zsql(cod_parlamentar=cod_parlamentar)">
+            <dtml-if sequence-start>
+                <tr>
+                    <th class="form-label">Natureza</th>
+                    <th class="form-label" align="center" width="25%">Quantidade</th>
+                </tr>
+            </dtml-if sequence-start>
+            <tr>
+                <td class="texto"><a href="&dtml-portal_url;/generico/materia_pesquisar_proc?incluir=0&existe_ocorrencia=0&lst_tip_materia=<dtml-var tip_materia>&txt_numero=&txt_prot_pref=&txt_ano=&txt_npc=&txt_num_protocolo=&dt_apres=&dt_apres2=&dt_public=&dt_public2=&hdn_txt_autor=&hdn_cod_autor=<dtml-var cod_parlamentar>&lst_tip_autor=Parlamentar&lst_cod_partido=&txt_relator=&txt_assunto=&rad_tramitando=&lst_localizacao=&lst_status=&rd_ordenacao=1&chk_coautor=0&btn_materia_pesquisar=Pesquisar"><dtml-var des_tipo_materia></a></td>
+                <td class="texto" align="center"><dtml-var qtde></td>
+            </tr>
+            <dtml-if sequence-end>
+            <dtml-if expr="total>0">
+                <tr>
+                    <td class="texto"><b>TOTAL</b></td>
+                    <td class="texto" align="center" width="25%"><b><dtml-var total></b></td>
+                </tr>
+            </dtml-if>
+        </table>
+        </dtml-if sequence-end>
+        <dtml-else>
+        <p class="texto">Não há matérias de autoria deste Parlamentar</p>
+        </dtml-in>
+        <p></p>
+
+        <dtml-in expr="zsql.parlamentar_obter_coautoria_zsql(cod_parlamentar=cod_parlamentar)">
+        <dtml-if sequence-start>
+        <table class="table">
+            <tr>
+                <th class="form-element" colspan="2" align="center">CO-AUTORIA</th>
+            </tr>
+            <tr>
+                <th class="form-label">Natureza</th>
+                <th class="form-label" align="center" width="25%">Quantidade</th>
+            </tr>
+        </dtml-if sequence-start>
+        <tr>
+            <td class="texto"><a href="&dtml-portal_url;/generico/materia_pesquisar_proc?incluir=0&existe_ocorrencia=0&lst_tip_materia=<dtml-var tip_materia>&txt_numero=&txt_prot_pref=&txt_ano=&txt_npc=&txt_num_protocolo=&dt_apres=&dt_apres2=&dt_public=&dt_public2=&hdn_txt_autor=&hdn_cod_autor=<dtml-var cod_parlamentar>&lst_tip_autor=Parlamentar&lst_cod_partido=&txt_relator=&txt_assunto=&rad_tramitando=&lst_localizacao=&lst_status=&rd_ordenacao=1&chk_coautor=1&btn_materia_pesquisar=Pesquisar"><dtml-var des_tipo_materia></a></td>
+            <td class="texto" align="center"><dtml-var qtde></td>
+        </tr>
+        <dtml-if sequence-end>
+            <dtml-if expr="total>0">
+                <tr>
+                    <td class="texto"><b>TOTAL</b></td>
+                    <td class="texto" align="center" width="25%"><b><dtml-var total_coautoria></b></td>
+                </tr>
+            </dtml-if>
+        </dtml-if sequence-end>
+        </dtml-in>
+        </table>
+
+    </div>
+    <div class="tab-pane fade" id="relatorias">
+    <dtml-in expr="zsql.parlamentar_obter_zsql(cod_parlamentar=cod_parlamentar)">
+        <dtml-call expr="REQUEST.set('nom_parlamentar', nom_parlamentar)">
+    </dtml-in>
+
+    <dtml-in expr="zsql.parlamentar_somar_relatoria_zsql(cod_parlamentar=cod_parlamentar)">
+        <dtml-call expr="REQUEST.set('total', total)">
+    </dtml-in>
+
+        <table class="table">
+            <dtml-in expr="zsql.parlamentar_obter_relatoria_zsql(cod_parlamentar=cod_parlamentar)">
+            <dtml-if sequence-start>
+                <tr>
+                    <th class="form-label"> Natureza</th>
+                    <th class="form-label" align="center" width="25%"> Quantidade</th>
+                </tr>
+            </dtml-if sequence-start>
+            <tr>
+                <td class="texto"><a href="&dtml-portal_url;/generico/materia_pesquisar_proc?incluir=0&existe_ocorrencia=0&lst_tip_materia=<dtml-var tip_materia>&txt_numero=&txt_ano=&txt_npc=&txt_num_protocolo&dt_apres=&dt_apres2=&dt_public=&dt_public2=&hdn_txt_autor=&hdn_cod_autor=&lst_tip_autor=&lst_cod_partido=&txt_relator=<dtml-var nom_parlamentar>&txt_assunto=&rad_tramitando=&lst_localizacao=&lst_status=&chk_coautor=&rd_ordenacao=1&btn_materia_pesquisar=Pesquisar"><dtml-var des_tipo_materia></a></td>
+                <td class="texto" align="center"><dtml-var qtde></td>
+            </tr>
+            <dtml-if sequence-end>
+            <tr>
+                <td class="texto"><b>TOTAL</b></td>
+                <td class="texto" align="center" width="25%"><b><dtml-var total></b></td>
+            </tr>
+
+        </dtml-if sequence-end>
+        <dtml-else>
+        <tr><td class="texto">Não há nenhuma relatoria cadastrada para este parlamentar</td></tr>
+        </dtml-in>
+        </table>
+        </div>
+</div>
+
+<p align="center">
+    <input type="button" class="btn btn-default" name="retornar" value="Retornar" onClick="javascript:history.go(-1)">
+</p>
+
+<dtml-var standard_html_footer>

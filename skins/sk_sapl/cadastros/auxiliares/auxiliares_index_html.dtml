@@ -1,0 +1,118 @@
+<dtml-var standard_html_header>
+
+<a id="ajuda" href="&dtml-portal_url;/ajuda/tabelas_auxiliares#taux_topo"><span class="glyphicon glyphicon-hand-right"></span> Ajuda</a>
+
+<h1 class="firstHeading">Tabelas Auxiliares</h1>
+
+<h3>Configuração Inicial</h3>
+<div class="row">
+    <div class="col-md-12">
+        <a href="casa_legislativa/casa_legislativa_form">Casa Legislativa</a>
+    </div>
+</div>
+<h3>Módulo Parlamentares</h3>
+<div class="row">
+    <div class="col-md-4">
+        <a href="legislatura">Legislatura</a><br />
+        <a href="tipo_afastamento">Tipo de Afastamento</a><br />
+        <a href="tipo_dependente">Tipo de Dependente</a>
+    </div>
+    <div class="col-md-4">
+        <a href="tipo_situacao_militar">Tipo de Situação Militar</a><br />
+        <a href="nivel_instrucao">Nível de Instrução</a><br />
+        <a href="partido">Partido</a>
+    </div>
+    <div class="col-md-4">
+        <a href="coligacao">Coligação</a>
+    </div>
+</div>
+
+<h3>Módulo Mesa Diretora</h3>
+<div class="row">
+    <div class="col-md-12">
+        <a href="sessao_legislativa">Sessão Legislativa</a><br />
+        <a href="cargo_mesa">Cargo da Mesa</a><br />
+        <a href="periodo_comp_mesa">Período de Composição</a>
+    </div>
+</div>
+
+<h3>Módulo Comissões</h3>
+<div class="row">
+    <div class="col-md-12">
+        <a href="cargo_comissao">Cargo de Comissão</a><br />
+        <a href="tipo_comissao">Tipo de Comissão</a><br />
+        <a href="periodo_comp_comissao">Período de Composição</a>
+    </div>
+</div>
+
+<h3>Módulo Bancadas</h3>
+<div class="row">
+    <div class="col-md-12">
+        <a href="bancada">Bancadas</a><br />
+        <a href="cargo_bancada">Cargo de Bancada</a>
+    </div>
+</div>
+
+<h3>Módulo Proposições</h3>
+<div class="row">
+    <div class="col-md-12">
+        <a href="tipo_proposicao">Tipo de Proposição</a><br />
+        <a href="autor">Autor</a>
+    </div>
+</div>
+
+
+<h3>Matérias Legislativas e Normas Jurídicas</h3>
+<div class="row">
+    <div class="col-md-4">
+        <a href="tipo_materia_legislativa">Tipo de Matéria Legislativa</a><br />
+        <a href="origem">Origem</a><br />
+        <a href="regime_tramitacao">Regime de Tramitação</a><br />
+        <a href="autor">Autor </a>
+        <a href="tipo_situacao_norma">Situação de Norma Jurídica</a>
+    </div>
+    <div class="col-md-4">
+        <a href="tipo_autor">Tipo de Autor</a><br />
+        <a href="tipo_norma_juridica">Tipo de Norma Jurídica</a>
+        <a href="tipo_documento">Tipo de Documento</a><br />
+        <a href="status_tramitacao">Status da Tramitação</a>
+    </div>
+    <div class="col-md-4">
+        <a href="tipo_fim_relatoria">Tipo de Fim de Relatoria</a><br />
+        <a href="orgao">Órgão</a><br />
+        <a href="unidade_tramitacao">Unidade de Tramitação</a><br />
+        <a href="assunto_norma_juridica">Assunto de Norma Jurídica</a><br />
+    </div>
+</div>
+
+<h3>Módulo Sessão Plenária</h3>
+<div class="row">
+    <div class="col-md-6">
+        <a href="tipo_sessao_plenaria">Tipo de Sess&atilde;o Plen&aacute;ria</a><br />
+        <a href="tipo_expediente">Tipo de Expediente</a><br />
+        <a href="tipo_resultado_votacao">Tipo de Resultado da Vota&ccedil;&atilde;o</a>
+    </div>
+    <div class="col-md-6">
+        <a href="painel_eletronico/painel_eletronico_form">Propriedades do Painel Eletr&ocirc;nico</a><br/>
+        <a href="presenca_endereco">Cadastro dos endere&ccedil;os dos computadores dos parlamentares</a>
+    </div>
+</div>
+
+<h3>Módulo LexML</h3>
+<div class="row">
+    <div class="col-md-12">
+        <a href="lexml/lexml_provedor">Provedor</a><br />
+        <a href="lexml/lexml_publicador">Publicador</a><br />
+    </div>
+</div>
+
+<h3>Módulo Administrativo</h3>
+<div class="row">
+    <div class="col-md-12">
+        <a href="tipo_documento_administrativo">Tipo de Documento</a><br />
+        <a href="status_tramitacao_administrativo">Status de Tramitação</a><br />
+        <a href="tipo_instituicao">Tipo de Instituição</a>
+    </div>
+</div>
+
+<dtml-var standard_html_footer>

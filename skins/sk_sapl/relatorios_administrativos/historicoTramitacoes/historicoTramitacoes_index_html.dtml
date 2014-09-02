@@ -1,0 +1,132 @@
+<dtml-var standard_html_header>
+<script type="text/javascript" src="javascript/data_validar_jvsc"></script>
+
+<script type="text/javascript">
+    $(function () {
+        $('#datepicker1').datepicker({
+            language: 'pt-BR',
+            autoclose: true,
+            todayHighlight: true,
+            format: 'dd/mm/yyyy'
+        });
+        $('#datepicker2').datepicker({
+            language: 'pt-BR',
+            autoclose: true,
+            todayHighlight: true,
+            format: 'dd/mm/yyyy'
+        });
+    });
+</script>
+
+<script language="javascript">
+
+  function campos_criticar(form){
+
+
+     if (!IsValidDate(form.txt_dat_inicio_periodo.value)) {
+         alert("Digite uma data válida!");
+         form.txt_dat_inicio_periodo.focus();
+         form.txt_dat_inicio_periodo.select();
+         return false;
+     }
+     
+     if (!IsValidDate(form.txt_dat_fim_periodo.value)) {
+         alert("Digite uma data válida!");
+         form.txt_dat_fim_periodo.focus();
+         form.txt_dat_fim_periodo.select();
+         return false;
+     }
+  form.submit();
+
+  }
+
+//-->
+</script>
+<a id="ajuda" href="&dtml-portal_url;/ajuda/relatorios#rel_materia"><span class="glyphicon glyphicon-hand-right"></span> Ajuda</a>
+<h1 class="firstHeading">Hist&oacute;rico de tramita&ccedil;&otilde;es</h1> 
+<h3>Tramita&ccedil;&atilde;o - parâmetros</h3>
+
+<form method="post" name="form" id="form_tramitacoes" class="form-horizontal" rule="form" action="historicoTramitacoes_mostrar_proc">
+    <div class="form-group ">
+        <div class="col-md-2 col-xs-2 col-md-offset-1">
+            <label class="form-label">Início </label>
+        </div>
+        <div class="col-md-3 col-xs-4">
+            <div class='input-group date' id='datepicker1'>
+            <input type="text"
+                   class="form-control"
+                   name="txt_dat_inicio_periodo"
+                   id="txt_dat_inicio_periodo"
+                   value="<dtml-var expr="tramitacaoDataObter()[0].dat_inicio" missing null="">" />
+            <span class="input-group-addon">
+                <span class="glyphicon glyphicon-calendar"></span>
+            </span>
+            </div>
+        </div>
+        <div class="col-md-1 col-xs-2">
+            <label class="form-label">Término </label>
+        </div>
+        <div class="col-md-3 col-xs-4">
+            <div class='input-group date' id='datepicker2'>
+                <input type="text"
+                       class="form-control"
+                       name="txt_dat_fim_periodo"
+                       id="txt_dat_fim_periodo"
+                       value="<dtml-var expr="tramitacaoDataObter()[0].dat_fim" missing null="">" />
+            <span class="input-group-addon">
+                <span class="glyphicon glyphicon-calendar"></span>
+            </span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-2 col-xs-3 col-md-offset-1">
+            <label class="form-label">Localiza&ccedil;&atilde;o</label>
+        </div>
+        <div class="col-md-7 col-xs-9">
+            <select class="form-control" name="lst_cod_unid_tram_dest">
+                <option selected value="0">Todos</option>
+                <dtml-in listaLocaisTramitacao>
+                    <option value="<dtml-var cod_unid_tramitacao>">
+                        <dtml-if cod_orgao><dtml-var nom_orgao missing>
+                            <dtml-elif cod_comissao><dtml-var nom_comissao missing>
+                            <dtml-else><dtml-var nom_parlamentar>
+                        </dtml-if>
+                    </option>
+                </dtml-in>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-2 col-xs-3 col-md-offset-1">
+            <label class="form-label">Tipo Mat&eacute;ria</label>
+        </div>
+        <div class="col-md-7 col-xs-9">
+            <select class="form-control" name="lst_tip_materia">
+                <option selected value="0">Todos</option>
+                <dtml-in listaTiposMaterias>
+                    <option value="<dtml-var tip_materia>"><dtml-var sgl_tipo_materia> - <dtml-var des_tipo_materia></option>
+                </dtml-in>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-2 col-xs-3 col-md-offset-1">
+            <label class="form-label">Status Tramitação</label>
+        </div>
+        <div class="col-md-7 col-xs-9">
+            <select class="form-control" name="lst_status">
+                <option selected value="0">Todos</option>
+                <dtml-in listaStatusTramitacao>
+                    <option value="<dtml-var cod_status>"><dtml-var sgl_status> - <dtml-var des_status></option>
+                </dtml-in>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <input type="submit" class="btn btn-primary col-xs-offset-4 col-md-offset-3 col-md-2" name="btn_materia_pesquisar" value="Pesquisar" onClick="campos_criticar(form)" />&nbsp;&nbsp;
+        <input type="reset" class="btn btn-default col-xs-offset-1 col-md-offset-1 col-md-2" name="btn_materia_limpar"  value="Limpar">
+    </div>
+</form>
+
+<dtml-var standard_html_footer>

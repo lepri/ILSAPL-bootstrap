@@ -1,0 +1,20 @@
+SAPL install
+
+  A instalaÃ§Ã£o do SAPL Ã© bastante simples. Se vocÃª estÃ¡ usando
+  a ferramenta CMF QuickInstaller Tool, basta ir atÃ© o objeto
+  portal_quickinstaller na raiz do seu CMF Site, selecionar o
+  produto ILSAPL e clicar no botÃ£o Install.
+
+  SenÃ£o, basta criar um External Method na raiz do seu CMF Site
+  com as seguintes informaÃ§Ãµes:
+
+  id: install_sapl
+  Module Name: ILSAPL.install
+  Function Name: install
+
+  E clicar na aba Test desse mÃ©todo.
+
+  Antes de instalar o SAPL confira o arquivo DEPENDENCIES.txt
+  para certificar-se de que todas as dependÃªncias estÃ£o instaladas
+  adequadamente.
+

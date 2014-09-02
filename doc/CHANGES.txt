@@ -1,0 +1,4 @@
+SAPL changes
+
+  DescriÃ§Ã£o do histÃ³rico de alteraÃ§Ãµes ocorridas no SAPL.
+

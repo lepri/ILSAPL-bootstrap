@@ -1,0 +1,267 @@
+<dtml-var standard_html_header>
+
+<script type="text/javascript">
+    $(function () {
+        $('#datepicker1').datepicker({
+            language: 'pt-BR',
+            autoclose: true,
+            todayHighlight: true,
+            format: 'dd/mm/yyyy'
+        });
+        $('#datepicker2').datepicker({
+            language: 'pt-BR',
+            autoclose: true,
+            todayHighlight: true,
+            format: 'dd/mm/yyyy'
+        });
+    });
+</script>
+
+<script type="text/javascript" src="javascript/data_validar_jvsc"></script>
+
+<script type="text/javascript">
+    <!--
+
+    function campos_criticar(){
+
+        var form = document.materia_autor_form;
+
+        if (form.dt_apres.value == "") {
+            alert("A data inicial deve ser preenchida!");
+            form.dt_apres.focus();
+            return false;
+        }
+
+        if (form.dt_apres2.value == "") {
+            alert("A data final deve ser preenchida!");
+            form.dt_apres2.focus();
+            return false;
+        }
+
+        if (form.dt_apres.value!="" && !IsValidDate(form.dt_apres.value)){
+            alert("Digite uma data inicial válida!");
+            form.dt_apres.focus();
+            form.dt_apres.select();
+            return false;
+        }
+
+        if (form.dt_apres2.value!="" && !IsValidDate(form.dt_apres2.value)){
+            alert("Digite uma data final válida!");
+            form.dt_apres2.focus();
+            form.dt_apres2.select();
+            return false;
+        }
+
+        var dt_apres = form.dt_apres.value.substring(6,10) + form.dt_apres.value.substring(3,5) + form.dt_apres.value.substring(0,2);
+        var dt_apres2 = form.dt_apres2.value.substring(6,10) + form.dt_apres2.value.substring(3,5) + form.dt_apres2.value.substring(0,2);
+
+        if (dt_apres2 < dt_apres) {
+            alert("A data final deve ser igual ou posterior à data inicial!");
+            form.dt_apres2.focus();
+            form.dt_apres2.select();
+            return false;
+        }
+
+        form.submit();
+    }
+
+    //-->
+</script>
+
+<script type="text/javascript">
+    <!--
+    function tipo_autor_trocar(form) {
+        form.txt_autor.value = "";
+        form.hdn_txt_autor.value = "";
+        form.hdn_cod_autor.value = "";
+        return;
+    }
+    //-->
+</script>
+
+<script type="text/javascript">
+    function clear_form_elements(ele) {
+
+        $(ele).find(':input').each(function() {
+            switch(this.type) {
+                case 'password':
+                case 'select-multiple':
+                case 'select-one':
+                case 'hidden':
+                case 'text':
+                case 'textarea':
+                    $(this).val('');
+                    break;
+                case 'checkbox':
+                case 'radio':
+                    this.checked = false;
+            }
+        });
+
+    }
+</script>
+
+<a id="ajuda" href="&dtml-portal_url;/ajuda/relatorios#rel_autor"><span class="glyphicon glyphicon-hand-right"></span> Ajuda</a>
+
+<h1 class="firstHeading">Matérias por Autor</h1>
+
+<dtml-if expr="not _.has_key('impressao') or (_.has_key('impressao') and not _.has_key('dt_apres') and not _.has_key('dt_apres2'))">
+<form class="form-horizontal" id="form_proposituras" rule="form" method="post" name="materia_autor_form" action="resumoPropositurasAutor_index_html">
+    <dtml-if impressao>
+        <input type="hidden" name="impressao" value="<dtml-var impressao>">
+    </dtml-if>
+    <div class="form-group">
+        <div class="col-md-2 col-xs-2">
+            <label class="control-label" for="txt_autor">Autor</label>
+        </div>
+        <div class="col-md-7 col-xs-6">
+            <input class="form-control" id="txt_autor" type="text" name="txt_autor" value="<dtml-var hdn_txt_autor missing>" placeholder="Todos" maxlength="50" disabled onFocus="javascript:this.blur()" />
+            <input type="hidden" name="hdn_txt_autor" value="<dtml-var hdn_txt_autor missing>" />
+            <input type="hidden" name="hdn_cod_autor" value="<dtml-var hdn_cod_autor missing>" />
+        </div>
+        <div class="col-md-1 col-xs-1">
+            <a href="#" class="btn btn-primary" onClick="javascript:window.open('autor_pesquisar_form?hdn_tipo_pesquisa=pesq_basica','ItemOrdemWin','width=500,height=430,top=200,left=200,scrollbars=yes');">Selecionar</a>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-2 col-xs-2">
+            <label class="control-label" for="lst_tip_materia">Tipo de matéria</label>
+        </div>
+        <div class="col-md-7 col-xs-6">
+            <select class="form-control" id="lst_tip_materia" name="lst_tip_materia">
+                <option value="0">Todos</option>
+                <dtml-in expr="zsql.tipo_materia_legislativa_obter_zsql(ind_excluido=0)">
+                    <option
+                    <dtml-if expr="_.has_key('lst_tip_materia') and _.int(tip_materia)==_.int(lst_tip_materia)">
+                        selected</dtml-if>
+                    value="<dtml-var tip_materia missing>">
+                    <dtml-var sgl_tipo_materia> - <dtml-var des_tipo_materia>
+                </option>
+                </dtml-in>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <!--<div class="row">-->
+        <div class="col-xs-10 col-md-2">
+            <label for="dt_apres" class="control-label">Período de Apresentação:</label>
+        </div>
+            <div class="col-xs-5 col-md-3">
+                <div class='input-group date' id='datepicker1'>
+                    <input type='text' class="form-control" id="dt_apres" name="dt_apres" maxlength="10" />
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+            </div>
+            <label for="dt_apres2" class="col-xs-1 col-md-1 control-label center">
+                a
+            </label>
+            <div class="col-xs-5 col-md-3">
+                <div class='input-group date' id='datepicker2'>
+                    <input type='text' class="form-control" id="dt_apres2" name="dt_apres2" maxlength="10" />
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+            </div>
+        <!--</div>-->
+    </div>
+    <div class="form-group">
+        <div class="row">
+            <input type="button" class="btn btn-primary col-xs-offset-2 col-xs-3 col-md-offset-3 col-md-2" name="button" value="Gerar relatório" onClick="campos_criticar()" />
+            <input type="button" class="btn btn-default col-xs-offset-1 col-xs-3 col-md-offset-1 col-md-2 " name="btn_materia_limpar" value="Limpar campos" onclick="clear_form_elements('#hideprint')" >
+        </div>
+    </div>
+
+</form>
+
+</dtml-if>
+
+<dtml-if expr="_.has_key('dt_apres') or _.has_key('dt_apres2')">
+    <h3 align="center">Matérias apresentadas entre <dtml-var dt_apres> e <dtml-var dt_apres2></h3>
+    <br />
+    <table class="table">
+        <tr>
+            <th colspan="2" ><h3 align="center">QUADRO GERAL</h3></th>
+        </tr>
+        <tr>
+            <td width="80%" class="form-label">
+                Tipo Matéria
+            </td>
+            <td width="20%" class="form-label">
+                Quantidade
+            </td>
+        </tr>
+        <dtml-in expr="tipoQtdeGeral(tip_materia_sel=lst_tip_materia,dat_apresentacao=dt_apres,dat_apresentacao2=dt_apres2)">
+            <tr>
+                <td class="texto">
+                    <dtml-var sgl_tipo_materia> - <dtml-var des_tipo_materia>
+                </td>
+                <td class="texto" align="center">
+                    <dtml-var qtde>
+                </td>
+            </tr>
+        </dtml-in>
+        <dtml-in expr="qtdeGeral(tip_materia_sel=lst_tip_materia,dat_apresentacao=dt_apres,dat_apresentacao2=dt_apres2)">
+            <tr>
+                <td class="texto">
+                    <b>TOTAL</b>
+                </td>
+                <td class="texto" align="center">
+                    <b><dtml-var qtde></b>
+                </td>
+            </tr>
+    </table>
+    <div class="page-break"></div>
+    <br />
+    <dtml-in expr="autorMateriaAno(cod_autor=hdn_cod_autor,tip_materia_sel=lst_tip_materia,dat_apresentacao=dt_apres,dat_apresentacao2=dt_apres2)">
+        <table class="table">
+            <tr>
+                <th colspan="3" class="form-label">
+                    <h3 align="center">
+                        <dtml-var nom_completo missing null="">
+                        <dtml-var nom_comissao missing null="">
+                        <dtml-var nom_bancada missing null="">
+                        <dtml-var nom_autor missing null="">
+                    </h3>
+                </th>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <dtml-in expr="qtdeAutor(autor=cod_autor,tip_materia_sel=lst_tip_materia,dat_apresentacao=dt_apres,dat_apresentacao2=dt_apres2)">
+                        <span class="texto"><b>Total do autor:</b> <dtml-var qtde></span>
+                    </dtml-in>
+                </td>
+            </tr>
+            <dtml-in expr="materiaAutorAno(autor=cod_autor,tip_materia_sel=lst_tip_materia,dat_apresentacao=dt_apres,dat_apresentacao2=dt_apres2)">
+                <tr>
+                    <td class="texto" valign="top" width="15%">
+                        <a href="&dtml-portal_url;/consultas/materia/materia_mostrar_proc?cod_materia=<dtml-var cod_materia>">
+                            <b><dtml-var sgl_tipo_materia> <dtml-var num_ident_basica>/<dtml-var ano_ident_basica></a></b>
+                    </td>
+                    <td class="texto" valign="top" width="65%">
+                        <dtml-var txt_ementa>
+                    </td>
+                    <td class="texto" valign="top" width="20%">
+                        <dtml-in expr="zsql.tramitacao_obter_zsql(cod_materia=cod_materia, ind_ult_tramitacao=1)">
+                            <dtml-var des_status missing>
+                        </dtml-in>
+                        <dtml-in expr="zsql.materia_buscar_norma_juridica_zsql(cod_materia=cod_materia)">
+                            <dtml-if sequence-start>
+                            </dtml-if>
+                            <dtml-if expr="cod_norma and cod_norma!=''">
+                                <br /><a href="&dtml-portal_url;/consultas/norma_juridica/norma_juridica_mostrar_proc?cod_norma=<dtml-var cod_norma>"><b><dtml-var sgl_norma> <dtml-var num_norma>/<dtml-var ano_norma></b></a>
+                            </dtml-if>
+                        </dtml-in>
+                    </td>
+                </tr>
+            </dtml-in>
+            <tr>
+        </table>
+        <br />
+        <div class="page-break"></div>
+    </dtml-in>
+
+    </dtml-in>
+</dtml-if>
+
+<dtml-var standard_html_footer>

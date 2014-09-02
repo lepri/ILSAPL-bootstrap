@@ -1,0 +1,30 @@
+<dtml-var standard_html_header>
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-2">
+        <p class="exclama">!</p>
+    </div>
+    <div class="col-md-6">
+        <br />
+        <br />
+        <dtml-var mensagem><br /><br />
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12 center">
+        <dtml-if expr="_.has_key('sucesso')">
+            <dtml-if expr="_.has_key('url')">
+                <input class="btn btn-primary" type="submit" name="btn_continuar" value="Continuar" onClick="location.href='<dtml-var url>'" />
+                <dtml-else>
+                <input class="btn btn-primary" type="submit" name="btn_continuar" value="Continuar" onClick="location.href='index_html'" />
+            </dtml-if>
+            <dtml-else>
+            <dtml-if expr="_.has_key('url')">
+                <input class="btn btn-primary" type="submit" name="btn_voltar" value="Voltar" onClick="location.href='<dtml-var url>'" />
+                <dtml-else>
+                <input class="btn btn-primary" type="submit" name="btn_voltar" value="Voltar" onClick="javascript:history.go(-1)" />
+            </dtml-if>
+        </dtml-if>
+    </div>
+</div>
+<dtml-var standard_html_footer>

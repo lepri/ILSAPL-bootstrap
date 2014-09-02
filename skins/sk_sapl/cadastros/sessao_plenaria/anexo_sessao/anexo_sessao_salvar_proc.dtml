@@ -1,0 +1,32 @@
+<dtml-call expr="REQUEST.set('erro', 0)">
+<dtml-call expr="REQUEST.set('existe_pasta', 0)">
+<dtml-if file_nom_arquivo>
+    <dtml-if expr="not _.hasattr(sapl_documentos, 'anexos_sessao')">
+        <dtml-try>
+            <dtml-call expr="sapl_documentos.manage_addFolder('anexos_sessao', 'Anexos da sessão Plenária')">
+            <dtml-call expr="REQUEST.set('id_documento', pysc.anexos_sessao_pysc(nomear=True, cod_sessao_plen = hdn_cod_sessao_plen))">
+            <dtml-call expr="sapl_documentos.anexos_sessao.manage_addFile(id_documento,file=file_nom_arquivo)">
+        <dtml-except>
+            <dtml-call expr="REQUEST.set('erro', 1)">
+        </dtml-try>
+    <dtml-else>
+        <dtml-call expr="REQUEST.set('id_documento', pysc.anexos_sessao_pysc(nomear=True, cod_sessao_plen = hdn_cod_sessao_plen))">
+        <dtml-try>
+            <dtml-call expr="sapl_documentos.anexos_sessao.manage_addFile(id_documento,file=file_nom_arquivo)">
+        <dtml-except>
+            <dtml-call expr="REQUEST.set('erro', 1)">
+        </dtml-try>
+    </dtml-if>
+</dtml-if>
+<dtml-if erro>
+    <dtml-let mensagem="'N&atilde;o foi poss&iacute;vel salvar o Anexo da Sess&atilde;o. Tente novamente.'">
+        <dtml-var mensagem_emitir>
+    </dtml-let>
+<dtml-else>
+    <dtml-call expr="pysc.sessao_plenaria_log_pysc(cod_sessao_plen = hdn_cod_sessao_plen,
+                                                   txt_acao = 'inclusão de anexo',
+                                                   txt_mensagem = 'Anexo da sessão plenária incluído.')">
+    <dtml-let mensagem="'Anexo da  Sess&atilde;o inclu&iacute;do com sucesso!'" sucesso="1" url="'index_html?&cod_sessao_leg=' + hdn_cod_sessao_leg + '&cod_sessao_plen=' + hdn_cod_sessao_plen + '&cod_num_legislatura=' + hdn_num_legislatura + '&dat_sessao=' + hdn_dat_sessao + '&tip_sessao=' + hdn_tip_sessao">
+        <dtml-var mensagem_emitir>
+    </dtml-let>
+</dtml-if>

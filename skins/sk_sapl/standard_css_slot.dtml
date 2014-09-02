@@ -1,0 +1,7 @@
+<link href="&dtml-portal_url;/tema/css/estilos.css" media="all" rel="stylesheet" type="text/css" />
+<link href="&dtml-portal_url;/tema/css/bootstrap.min.css" media="all" rel="stylesheet" type="text/css" />
+<link href="&dtml-portal_url;/tema/css/bootstrap-theme.min.css" media="all" rel="stylesheet" type="text/css" />
+<link href="&dtml-portal_url;/tema/css/bootstrapValidator.min.css" media="all" rel="stylesheet" type="text/css" />
+<link href="&dtml-portal_url;/tema/css/datepicker3.css" media="all" rel="stylesheet" type="text/css" />
+<link href="&dtml-portal_url;/tema/css/bootstrap-colorpicker.min.css" media="all" rel="stylesheet" type="text/css" />
+<link href="&dtml-portal_url;/generico/jquery.cleditor.css" media="all" rel="stylesheet" type="text/css" />

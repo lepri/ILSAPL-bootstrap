@@ -1,0 +1,44 @@
+<dtml-var standard_html_header>
+
+<a id="ajuda" href="&dtml-portal_url;/ajuda/tipo_expediente"><span class="glyphicon glyphicon-hand-right"></span> Ajuda</a>
+<h1 class="firstHeading"> Tabelas Auxiliares </h1>
+
+<table class="table">
+    <tbody>
+        <tr>
+            <td class="texto">
+            | <a href="tipo_expediente_form">Incluir Tipo Expediente</a> |
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<dtml-in expr="zsql.tipo_expediente_obter_zsql()">
+    <dtml-if sequence-start>
+
+        <h3>Tipos de Expediente</h3>
+        <table class="table">
+            <tr><td></td></tr>
+            <tr class="fundo">
+                <td colspan="0" class="label">&nbsp;Tipo</td>
+            </tr>
+    </dtml-if sequence-start>
+            <tr>
+                <td width="50%" height="17" class="form-element">&nbsp;&nbsp;
+                    <a href="tipo_expediente_mostrar_proc?cod_expediente=<dtml-var cod_expediente>">
+                    <dtml-var nom_expediente></a>
+                </td>
+            </tr>
+        <dtml-if sequence-end>
+        </table>
+
+        </dtml-if sequence-end>
+    <dtml-else>
+        <table class="table">
+            <tr>
+                <td class="form-text">Nenhum Tipo de Expediente cadastrado.</td>
+            </tr>
+       </table>
+</dtml-in>
+
+<dtml-var standard_html_footer>

@@ -1,0 +1,62 @@
+<dtml-in expr="zsql.sessao_plenaria_obter_zsql(ind_iniciada=1)">
+    <dtml-call expr="REQUEST.set('dat_sessao', dat_inicio_sessao)">
+    <dtml-call expr="REQUEST.set('cod_num_legislatura', num_legislatura)">
+    <dtml-call expr="REQUEST.set('cod_sessao_plen', cod_sessao_plen)">
+</dtml-in>
+<dtml-call expr="REQUEST.set('ind_votacao_iniciada', 0)">
+<dtml-in expr="zsql.ordem_dia_obter_zsql(cod_sessao_plen = cod_sessao_plen, ind_excluido=0, ind_votacao_iniciada=1)">
+    <dtml-call expr="REQUEST.set('cod_ordem', cod_ordem)">
+    <dtml-call expr="REQUEST.set('cod_materia', cod_materia)">
+    <dtml-call expr="REQUEST.set('tip_votacao', tip_votacao)">
+    <dtml-call expr="REQUEST.set('tip_sessao', tip_sessao)">
+    <dtml-if ind_votacao_iniciada>
+        <dtml-call expr="REQUEST.set('ind_votacao_iniciada', 1)">
+    </dtml-if>
+</dtml-in>
+<dtml-if expr="not ind_votacao_iniciada">
+    <dtml-in expr="zsql.ultima_votacao_obter_zsql(cod_sessao_plen = cod_sessao_plen, ind_excluido=0, ind_votacao_iniciada=0)">
+        <dtml-call expr="REQUEST.set('cod_ordem', cod_ordem)">
+        <dtml-call expr="REQUEST.set('cod_materia', cod_materia)">
+        <dtml-call expr="REQUEST.set('tip_votacao', tip_votacao)">
+        <dtml-call expr="REQUEST.set('tip_sessao', tip_sessao)">
+    </dtml-in>
+</dtml-if>
+<dtml-if cod_ordem>
+    <dtml-in expr="zsql.votacao_obter_zsql(cod_ordem=cod_ordem, cod_materia=cod_materia, ind_excluido=0)">
+        <dtml-call expr="REQUEST.set('cod_votacao', cod_votacao)">
+        <dtml-else>
+        <dtml-call expr="REQUEST.set('cod_votacao', None)">
+    </dtml-in>
+</dtml-if>
+<table class="parlamentares">
+    <dtml-in expr="zsql.parlamentar_obter_zsql(num_legislatura = cod_num_legislatura, ind_ativo=1, ind_excluido=0)">
+        <dtml-if expr="zsql.presenca_sessao_obter_zsql(cod_sessao_plen=cod_sessao_plen,cod_parlamentar=cod_parlamentar, ind_excluido=0)">
+            <dtml-if expr="zsql.composicao_mesa_sessao_obter_zsql(cod_sessao_plen=cod_sessao_plen, cod_parlamentar=cod_parlamentar, ind_excluido=0)">
+                <dtml-call expr="REQUEST.set('classe', 'presenca-cor-mesa')">
+                <dtml-else>
+                <dtml-call expr="REQUEST.set('classe', 'presenca-cor')">
+            </dtml-if>
+            <dtml-else>
+            <dtml-if expr="zsql.composicao_mesa_sessao_obter_zsql(cod_sessao_plen=cod_sessao_plen, cod_parlamentar=cod_parlamentar, ind_excluido=0)">
+                <dtml-call expr="REQUEST.set('classe', 'ausencia-cor-mesa')">
+                <dtml-else>
+                <dtml-call expr="REQUEST.set('classe', 'ausencia-cor')">
+            </dtml-if>
+        </dtml-if>
+
+        <tr class=<dtml-var classe>>
+            <td width="80%">
+                <dtml-var nom_parlamentar> / <dtml-var sgl_partido>
+            </td>
+            <td width="20%">
+                <dtml-if tip_votacao>
+                    <dtml-if expr="tip_votacao==2 and cod_votacao">
+                        <dtml-in expr="zsql.votacao_parlamentar_obter_zsql(cod_parlamentar=cod_parlamentar, cod_votacao=cod_votacao, ind_excluido=0)">
+                            <dtml-var expr="vot_parlamentar[0]">
+                        </dtml-in>
+                    </dtml-if>
+                </dtml-if>
+            </td>
+        </tr>
+    </dtml-in>
+</table>

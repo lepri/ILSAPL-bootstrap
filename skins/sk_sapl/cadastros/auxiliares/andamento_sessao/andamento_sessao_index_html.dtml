@@ -1,0 +1,43 @@
+<dtml-var standard_html_header>
+<a id="ajuda" href="&dtml-portal_url;/ajuda/andamento_sessao_plenaria"><span class="glyphicon glyphicon-hand-right"></span> Ajuda</a>
+<h1 class="firstHeading"> Tabelas Auxiliares </h1> 
+
+<table class="table" border="0" cellspacing="0" cellpadding="0" class="center">
+  <tr class="fundo"> 
+    <td align="left" class="form-label"> |<a href="andamento_sessao_form">
+     Incluir Andamento da Sess&atilde;o Plen&aacute;ria</a>|</td>
+<dtml-comment>
+    <td align="right" class="form-label">
+      <b>| <a href="javascript:history.go(-1)">Voltar</a> |</td>
+</dtml-comment>
+   </tr>
+</table>
+
+<dtml-in expr="zsql.andamento_sessao_obter_zsql()">
+    <dtml-if sequence-start>
+ <table class="table" class="center">
+  <tr>
+    <td><h3>Andamento</h3>
+       <table class="table" border="0" cellspacing="0" class="center" cellpadding="0">
+    </dtml-if sequence-start>
+          <tr>
+            <td width="15%" height="17" class="form-element">&nbsp;&nbsp;
+              <a href="andamento_sessao_mostrar_proc?cod_andamento_sessao=<dtml-var cod_andamento_sessao>">
+               <dtml-var nom_andamento></a></td>
+          </tr>
+    <dtml-if sequence-end>
+        </table>
+    </dtml-if sequence-end>
+  <dtml-else>
+<table class="table" class="center">
+  <tr>
+    <td><h3>Andamento</h3>
+       <table class="table" border="0" cellspacing="0" cellpadding="0" class="center">
+          <tr><td><font size="1">&nbsp;</font></td></tr>
+          <tr><td class="form-text">Nenhum Andamento de Sess&atilde;o Plen&aacute;ria cadastrado.</td></tr>
+     </table>
+</dtml-in>
+   </td>
+  </tr>
+ </table>
+<dtml-var standard_html_footer>

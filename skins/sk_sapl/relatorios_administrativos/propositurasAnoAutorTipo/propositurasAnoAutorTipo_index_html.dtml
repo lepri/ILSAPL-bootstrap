@@ -1,0 +1,25 @@
+<dtml-var standard_html_header>
+
+<a id="ajuda" href="&dtml-portal_url;/ajuda/relatorios#rel_tipo_autor_ano"><span class="glyphicon glyphicon-hand-right"></span> Ajuda</a>
+
+<h1 class="firstHeading">Matérias por Ano, Autor e Tipo</h1>
+
+<form action="view" class="form-horizontal" rule="form">
+    <div class="form-group">
+        <div class="col-md-2 col-xs-3">
+            <label class="form-label">Selecione o Ano:</label>
+        </div>
+        <div class="col-md-3 col-xs-4">
+            <select class="form-control" name="ano" size="1">
+                <dtml-in listaAnosMaterias>
+                    <option value="<dtml-var ano_mat>"><dtml-var ano_mat></option>
+                </dtml-in>
+            </select>
+        </div>
+        <div class="col-md-2 col-xs-2">
+            <input type="submit" class="btn btn-primary" value="Pesquisar">
+        </div>
+    </div>
+</form>
+
+<dtml-var standard_html_footer>

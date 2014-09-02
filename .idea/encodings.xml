@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding" useUTFGuessing="true" native2AsciiForPropertiesFiles="true" defaultCharsetForPropertiesFiles="UTF-8">
+    <file url="file://$PROJECT_DIR$/skins/sk_sapl/cadastros/auxiliares/painel_eletronico/painel_eletronico_salvar_proc.dtml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/skins/sk_sapl/cadastros/materia/relatoria/relatoria_form.dtml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/skins/sk_sapl/consultas/sessao_plenaria/materias_ordem_dia_sessao_form.dtml" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/skins/sk_sapl/default_index_html.dtml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/skins/sk_sapl/documento_header.dtml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/skins/sk_sapl/generico_old/senha_trocar_form.dtml" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/skins/sk_sapl/materia_header.dtml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/skins/sk_sapl/mensagem_emitir.dtml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/skins/sk_sapl/mensagem_emitir_newgeneration.dtml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/skins/sk_sapl/mensagem_popup_emitir.dtml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/skins/sk_sapl/printable_html_top_bar.dtml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/skins/sk_sapl/pysc/norma_texto_buscar_pysc.py" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/skins/sk_sapl/relatorios_administrativos/tramitacaoMaterias/autorMateriaAno.zsql" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/skins/sk_sapl/relatorios_administrativos/tramitacaoMaterias/listaAnosMaterias.zsql" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/skins/sk_sapl/relatorios_administrativos/tramitacaoMaterias/listaDestinosMaterias.zsql" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/skins/sk_sapl/relatorios_administrativos/tramitacaoMaterias/listaLocaisTramitacao.zsql" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/skins/sk_sapl/relatorios_administrativos/tramitacaoMaterias/listaOrigensMaterias.zsql" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/skins/sk_sapl/relatorios_administrativos/tramitacaoMaterias/listaStatusMaterias.zsql" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/skins/sk_sapl/relatorios_administrativos/tramitacaoMaterias/listaStatusTramitacao.zsql" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/skins/sk_sapl/relatorios_administrativos/tramitacaoMaterias/listaTiposMaterias.zsql" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/skins/sk_sapl/relatorios_administrativos/tramitacaoMaterias/materiaAno.zsql" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/skins/sk_sapl/relatorios_administrativos/tramitacaoMaterias/materiaAnoTipoLocal.zsql" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/skins/sk_sapl/relatorios_administrativos/tramitacaoMaterias/materiaAutorAno.zsql" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/skins/sk_sapl/relatorios_administrativos/tramitacaoMaterias/materiaStatusAno.zsql" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/skins/sk_sapl/relatorios_administrativos/tramitacaoMaterias/propriedades.props" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/skins/sk_sapl/relatorios_administrativos/tramitacaoMaterias/qtdeAno.zsql" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/skins/sk_sapl/relatorios_administrativos/tramitacaoMaterias/qtdeAnoTipo.zsql" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/skins/sk_sapl/relatorios_administrativos/tramitacaoMaterias/qtdeAutor.zsql" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/skins/sk_sapl/relatorios_administrativos/tramitacaoMaterias/qtdeGeral.zsql" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/skins/sk_sapl/relatorios_administrativos/tramitacaoMaterias/qtdeStatusTramitacao.zsql" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/skins/sk_sapl/relatorios_administrativos/tramitacaoMaterias/qtdeTipoAno.zsql" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/skins/sk_sapl/relatorios_administrativos/tramitacaoMaterias/qtdeTipoLocal.zsql" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/skins/sk_sapl/relatorios_administrativos/tramitacaoMaterias/tMidx_html" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/skins/sk_sapl/relatorios_administrativos/tramitacaoMaterias/tipoQtdeGeral.zsql" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/skins/sk_sapl/relatorios_administrativos/tramitacaoMaterias/tramitacaoMaterias_form.dtml" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/skins/sk_sapl/relatorios_administrativos/tramitacaoMaterias/tramitacaoMaterias_index_html.dtml" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/skins/sk_sapl/relatorios_administrativos/tramitacaoMaterias/tramitacaoMaterias_index_html_old.dtml" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/skins/sk_sapl/relatorios_administrativos/tramitacaoMaterias/tramitacaoMaterias_mostrar_proc.dtml" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/skins/sk_sapl/relatorios_administrativos/tramitacaoMaterias/tramitacao_form" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/skins/sk_sapl/standard_css_slot.dtml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/skins/sk_sapl/standard_error_message.dtml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/skins/sk_sapl/standard_html_footer.dtml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/skins/sk_sapl/standard_html_header.dtml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/skins/sk_sapl/standard_html_lateral.dtml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/skins/sk_sapl/standard_html_superior.dtml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/skins/sk_sapl/standard_html_top_bar.dtml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/skins/sk_sapl/zsql/props_painel_eletronico_obter_zsql.zsql" charset="UTF-8" />
+  </component>
+</project>
+

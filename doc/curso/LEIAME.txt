@@ -1,0 +1,11 @@
+=========== Material para cursos sobre o SAPL ===========
+
+Este diretÃ³rio contÃ©m os arquivos utilizados nos
+cursos de SAPL ministrados pelo Interlegis ou por
+seus representantes.
+
+Esses arquivos foram editados com o OpenOffice, 
+versÃ£o 1.9 ou superior.
+
+VocÃª pode obter o OpenOffice em http://www.openoffice.org.
+
